@@ -4,6 +4,10 @@
 ![Filament](https://img.shields.io/badge/Filament-v3-orange.svg)
 ![Laravel](https://img.shields.io/badge/Laravel-v11-red.svg)
 
+### Screenshots
+
+![Page Preview](screenshot.png)
+
 Custom Filament form field that renders a Blade preview.
 
 ## Installation
