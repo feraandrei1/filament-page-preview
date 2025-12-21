@@ -1,5 +1,9 @@
 # Filament Page Preview
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Filament](https://img.shields.io/badge/Filament-v3-orange.svg)
+![Laravel](https://img.shields.io/badge/Laravel-v11-red.svg)
+
 Custom Filament form field that renders a Blade preview.
 
 ## Installation
@@ -32,7 +36,12 @@ public function form(Form $form): Form
 }
 ```
 
-### Publishing Views
+### Documentation
+
+- **[Creating a Preview Route](docs/preview-route.md)** - Step-by-step guide to set up routes and controllers
+- **[Complete Filament Page Example](docs/filament-page-example.md)** - Full example with two-column layout and live preview
+
+### Custom Preview View
 
 You can publish the views to customize them:
 
@@ -40,72 +49,13 @@ You can publish the views to customize them:
 php artisan vendor:publish --tag=filament-page-preview-views
 ```
 
-### Custom Preview View
-
-You can specify a custom view for the preview:
+Or, you can specify a custom view for the preview:
 
 ```php
 PreviewField::make('preview_field')
     ->previewView('filament.view-fields.custom-preview')
     ->previewData(['key' => 'value']);
 ```
-
-## Creating a Preview Route
-
-To display your form data in a preview page, you need to create a route and controller method.
-
-### Step 1: Add the Route
-
-In `routes/web.php`:
-
-```php
-Route::get('preview/{user}', [YourController::class, 'preview'])->name('your-preview-route');
-```
-
-### Step 2: Create the Controller Method
-
-```php
-public function preview(User $user)
-{
-    // Decode the preview data from URL
-    $data = json_decode(urldecode(request('data')), true) ?? [];
-
-    // Optional: Add security check
-    if ($user->username != $data['username']) {
-        abort(404);
-    }
-
-    // Return your preview view with the data
-    return view('your-preview-view', $data);
-}
-```
-
-### Step 3: Create Your Preview View
-
-Create a simple Blade view that displays the preview data:
-
-```blade
-{{-- resources/views/your-preview-view.blade.php --}}
-
-<div>
-    <h1>{{ $company_name ?? 'Company Name' }}</h1>
-    <p>{{ $description ?? '' }}</p>
-
-    @if(isset($galleries))
-        @foreach($galleries as $gallery)
-            <div>{{ $gallery->name }}</div>
-        @endforeach
-    @endif
-</div>
-```
-
-### How It Works
-
-1. The `PreviewField` sends form data as URL-encoded JSON via the `data` parameter
-2. Your controller decodes this data and passes it to your view
-3. Your view renders the preview using the provided data
-
-**Tip:** Use the `is_preview` variable to apply special styling for the preview iframe.
 
 ## Requirements
 
