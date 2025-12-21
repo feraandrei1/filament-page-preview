@@ -4,7 +4,7 @@
 @endphp
 
 <iframe
-    src="{{ route('gallery.preview', ['user' => $user ?? '', 'data' => $encodedData]) }}"
+    src="{{ route($previewRouteName, ['user' => $user ?? '', 'data' => $encodedData]) }}"
     style="width:100%; height:1325px;">
 </iframe>
 

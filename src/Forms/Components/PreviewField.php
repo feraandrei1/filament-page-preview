@@ -6,7 +6,7 @@ use Filament\Forms\Components\ViewField;
 
 class PreviewField extends ViewField
 {
-    protected string $view = 'filament-page-preview::filament.view-fields.preview-home-page';
+    protected string $view = 'filament-page-preview::filament.view-fields.preview-page';
 
     public static function make(string $name): static
     {
