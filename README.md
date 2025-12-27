@@ -6,7 +6,7 @@
 
 ### Screenshots
 
-![Page Preview](screenshot.png)
+![Page Preview](screenshot.jpg)
 
 Custom Filament form field that renders a Blade preview.
 
